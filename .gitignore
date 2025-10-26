@@ -2,7 +2,10 @@
 __pycache__/
 *.py[codz]
 *$py.class
-*.bkp
+
+# DRAW IO left over artifacts
+**/*.bkp
+**/*.dtmp
 
 # C extensions
 *.so

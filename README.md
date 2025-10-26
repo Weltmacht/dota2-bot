@@ -20,4 +20,5 @@ git push -u origin main
 Added a few lines of complex data types from Python for examples.
 
 TODO:
-    * Find out how to get DOTA2 match start events to either call to Python, or find a way to subscribe to player starting a match
+    * Find out how to get DOTA2 match start events to either call to Python, or find a way to subscribe to player starting a match  -- Game State Integration addon for DOTA2
+    * How do we receive the request and respond or process properly

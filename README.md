@@ -15,7 +15,7 @@ git push -u origin main
     1. Install Python 3.13(or higher)
     1. Install Git SCM & Git History Extension
     1. Install Python, Python Debugger, PyLance
-1. Install Draw.IO https://drawio.com or https://draw.io(browser version)
+1. Install Draw.IO https://drawio.com or https://draw.io (browser version)
 
 Added a few lines of complex data types from Python for examples.
 

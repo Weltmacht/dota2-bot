@@ -19,31 +19,27 @@ def process():
     if _player_team == '':
         _player_team = content.get("player", {}).get("team_name", '')
     
-    if _previous_known_state != content["map"]["game_state"]:
-        _previous_known_state = content["map"]["game_state"]
-        if content["map"]["game_state"] == "DOTA_GAMERULES_STATE_HERO_SELECTION":
+    if _previous_known_state != content.get("map", {}).get("game_state"):
+        _previous_known_state = content.get("map", {}).get("game_state")
+        if content.get("map", {}).get("game_state") == "DOTA_GAMERULES_STATE_HERO_SELECTION":
             pass
-        if content["map"]["game_state"] == "DOTA_GAMERULES_STATE_STRATEGY_TIME":
+        if content.get("map", {}).get("game_state") == "DOTA_GAMERULES_STATE_STRATEGY_TIME":
             pass
-        if content["map"]["game_state"] == "DOTA_GAMERULES_STATE_SHOWCASE_TIME":
+        if content.get("map", {}).get("game_state") == "DOTA_GAMERULES_STATE_SHOWCASE_TIME":
             pass
-        if content["map"]["game_state"] == "DOTA_GAMERULES_STATE_GAME_IN_PROGRESS":
+        if content.get("map", {}).get("game_state") == "DOTA_GAMERULES_STATE_GAME_IN_PROGRESS":
             pass
-        if content["map"]["game_state"] == "DOTA_GAMERULES_STATE_POST_GAME":
+        if content.get("map", {}).get("game_state") == "DOTA_GAMERULES_STATE_POST_GAME":
             try:
                 response = requests.get(url = f"https://api.opendota.com/api/matches/{match_id}")
                 response.raise_for_status()
                 data = json.loads(response.text) 
-                for player in data["players"]:
-                    print("PSlot: ", player["player_slot"])
-                    if "personaname" in player:
-                        print("Persona name: ", player["personaname"])
-                    if "name" in player:
-                        print("Player name: ", player["name"])
-                    if "rank_tier" in player:
-                        print("Rank: ", player["rank_tier"])
-                    if "lane_pos" in player:
-                        print("Position: ", player["lane_pos"])
+                for player in data.get("players"):
+                    print("PSlot: ", player.get("player_slot", 'No slot available'))
+                    print("Persona name: ", player.get("personaname", 'No persona name available'))
+                    print("Player name: ", player.get("name", 'No name available'))
+                    print("Rank: ", player.get("rank_tier", 'No rank available'))
+                    print("Position: ", player.get("lane_pos", 'No pos available'))
                 endmatch(content["map"]["win_team"])
 
             except requests.RequestException as e:

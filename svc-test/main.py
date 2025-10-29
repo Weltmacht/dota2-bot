@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import requests
+import json
 
 app = Flask(__name__)
 
@@ -19,7 +20,6 @@ def process():
                 _player_team = content["player"]["team_name"]
 
     if 'map' in content:
-        print("Game state: ", content["map"]["game_state"])
         match_id = content["map"]["matchid"]
         if _previous_known_state != content["map"]["game_state"]:
             _previous_known_state = content["map"]["game_state"]
@@ -33,7 +33,22 @@ def process():
                 pass
             if content["map"]["game_state"] == "DOTA_GAMERULES_STATE_POST_GAME":
                 response = requests.get(url = f"https://api.opendota.com/api/matches/{match_id}")
-                print(response)
+                if response.status_code == 200:
+                    data = json.loads(response.text)   
+
+                    print(data["players"])
+
+                    for player in data["players"]:
+                        print("PSlot: ", player["player_slot"])
+                        if "personaname" in player:
+                            print("Persona name: ", player["personaname"])
+                        if "name" in player:
+                            print("Player name: ", player["name"])
+                        if "rank_tier" in player:
+                            print("Rank: ", player["rank_tier"])
+                        if "lane_pos" in player:
+                            print("Position: ", player["lane_pos"])
+
                 endmatch(content)
 
     return jsonify(message={"state": "succeeded"}, status=200), 200

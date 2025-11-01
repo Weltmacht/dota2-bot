@@ -26,5 +26,6 @@ TODO:
 * ~~Find out how to get DOTA2 match start events to either call to Python, or find a way to subscribe to player starting a match  -- Game State Integration addon for DOTA2~~
 * ~~How do we receive the request and respond or process properly~~
 * Determine what data we want to collect to announce.
+* Figure out how to get a parse queued and ran
 * Find out what events will trigger an announce
 * How to send messages to Discord channel

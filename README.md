@@ -1,7 +1,7 @@
 # dota2-bot
 ### DOTA2 Discord Announcement Bot
 
-```bash
+```shell
 git clone <repository name>
 git status
 git log
